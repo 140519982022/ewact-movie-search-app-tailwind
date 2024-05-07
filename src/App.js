@@ -1,6 +1,7 @@
 import axios from 'axios';
 import './App.css';
 import { useState } from 'react';
+import missingImg from './assets/images/image-missing.png';
 
 function App() {
 
@@ -10,8 +11,6 @@ function App() {
     let apiUrl;
 
     if (title === '') {
-
-
       apiUrl = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=1`;
 
     }
@@ -70,11 +69,12 @@ function App() {
 
 function MoviedData({ data }) {
 
-  console.log(data)
+  // console.log(data)
   return (
     <>
       <div className='shadow-lg bg-white text-center pb-[10px]'>
-        <img src={`https://image.tmdb.org/t/p/w1280${data.poster_path}`} />
+        {/* <img src={`https://image.tmdb.org/t/p/w1280${data.poster_path}`} /> */}
+        <img src={data.poster_path ? `https://image.tmdb.org/t/p/w1280${data.poster_path}` : missingImg} />
 
         <h3 className='text-[20px] font-bold text-center py-[10px]'>{data.original_title}</h3>
         <p>
